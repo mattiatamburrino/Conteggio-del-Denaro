@@ -1,10 +1,11 @@
-# Conteggio-del-Denaro
-Questo è un programma intermedio in c++ per contare quanti soldi contanti possiedi. 
+# Money-Counting
 
-## Come Funziona?
+This is an intermediate-level C++ program designed to help you accurately calculate the total amount of cash you have on hand.
 
-1. 💶 Inserisci il numero di banconote per ogni tipo
-2. 🪙 Inserisci il numero di monete per ogni tipo
-3. 💰 Ottieni il totale.
+## How It Works
 
-Puoi visualizzare il totale nel file **portafoglio.txt**
+1. 💶 **Enter Banknotes**: Input the quantity of each type of banknote you possess.
+2. 🪙 **Enter Coins**: Input the quantity of each type of coin you have.
+3. 💰 **Get the Total**: The program calculates and provides the total cash amount.
+
+The final total is saved in the **wallet.txt** file for easy reference.
