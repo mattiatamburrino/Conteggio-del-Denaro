@@ -1,13 +1,13 @@
 #include <iostream>
 #include <fstream> // File
-#include <ctime> // Data gg/mm/aaaa
+#include <ctime> // Date dd/mm/yyyy
 using namespace std;
 
-// Numero di banconote di vari tagli
+// Number of banknotes of various denominations
 struct euro_paper
 {
-    int fivehundred = 0; // N. banconote da 500 euro
-    int twohundred = 0;  // N. banconote da ...
+    int fivehundred = 0; // Number of 500 euro banknotes
+    int twohundred = 0;  // Number of ...
     int onehundred = 0;
     int fifty = 0;
     int twenty = 0;
@@ -15,11 +15,11 @@ struct euro_paper
     int five = 0;
 };
 
-// Numero di monete di vari tagli
+// Number of coins of various denominations
 struct euro_coins
 {
-    int two = 0; // N. monete da 2
-    int one = 0; // N. monete da ...
+    int two = 0; // Number of 2 euro coins
+    int one = 0; // Number of ...
     int fifty_c = 0;
     int twenty_c = 0;
     int ten_c = 0;
@@ -28,113 +28,113 @@ struct euro_coins
     int one_c = 0;
 };
 
-// Prototipi
-void inserimento(euro_paper &paper, euro_coins &coins);
-double calcolo(const euro_paper &paper, const euro_coins &coins);
-void salva_saldo(double saldo_tot);
+// Prototypes
+void input(euro_paper &paper, euro_coins &coins);
+double calculate(const euro_paper &paper, const euro_coins &coins);
+void save_balance(double total_balance);
 
 int main()
 {
-    char scelta;
+    char choice;
 
-    // Ciclo per far ripartire il programma a scelta dell'utente
+    // Loop to restart the program based on user choice
     do {
-        // Istanzia una struttura per banconote e monete
+        // Instantiate a structure for banknotes and coins
         euro_paper paper; 
         euro_coins coins;
 
-        inserimento(paper, coins); // Chiamata per l'inserimento del numero di banconote e monete
+        input(paper, coins); // Call for entering the number of banknotes and coins
 
-        // Calcola il saldo totale usando i dati inseriti e lo stampa
-        double saldo_tot = calcolo(paper, coins); 
-        cout << "\nPortafoglio = " << saldo_tot << " euro." << endl;
+        // Calculate the total balance using the entered data and print it
+        double total_balance = calculate(paper, coins); 
+        cout << "\nWallet = " << total_balance << " euros." << endl;
 
-        salva_saldo(saldo_tot); // Salva il saldo totale sul file (portafoglio.txt)
+        save_balance(total_balance); // Save the total balance to the file (wallet.txt)
 
-         // Chiede all'utente se vuole fare un nuovo conteggio di denaro usando la variabile scelta definita sopra
-        cout << "\nVuoi fare un nuovo conteggio? (s/n): ";
-        cin >> scelta;
+         // Ask the user if they want to perform a new money count using the choice variable defined above
+        cout << "\nDo you want to do a new count? (y/n): ";
+        cin >> choice;
 
-    } while (scelta == 's' || scelta == 'S'); // Ripete il ciclo se l'utente sceglie 's' o 'S'
+    } while (choice == 'y' || choice == 'Y'); // Repeat the loop if the user chooses 'y' or 'Y'
 
     return 0;
 }
 
-// Funzione per inserire il numero di banconote e monete
-void inserimento(euro_paper &paper, euro_coins &coins)
+// Function to enter the number of banknotes and coins
+void input(euro_paper &paper, euro_coins &coins)
 {
-    cout << "BANCONOTE:" << endl;
-    // L'utente memorizza l'inserimento di ogni tipo di banconota
-    cout << "n. 500 Euro: "; cin >> paper.fivehundred;
-    cout << "n. 200 Euro: "; cin >> paper.twohundred;
-    cout << "n. 100 Euro: "; cin >> paper.onehundred;
-    cout << "n. 50 Euro: "; cin >> paper.fifty;
-    cout << "n. 20 Euro: "; cin >> paper.twenty;
-    cout << "n. 10 Euro: "; cin >> paper.ten;
-    cout << "n. 5 Euro: "; cin >> paper.five;
+    cout << "BANKNOTES:" << endl;
+    // The user records the entry for each type of banknote
+    cout << "No. of 500 Euro: "; cin >> paper.fivehundred;
+    cout << "No. of 200 Euro: "; cin >> paper.twohundred;
+    cout << "No. of 100 Euro: "; cin >> paper.onehundred;
+    cout << "No. of 50 Euro: "; cin >> paper.fifty;
+    cout << "No. of 20 Euro: "; cin >> paper.twenty;
+    cout << "No. of 10 Euro: "; cin >> paper.ten;
+    cout << "No. of 5 Euro: "; cin >> paper.five;
 
-    cout << "\nMONETE:" << endl; 
-    // L'utente memorizza l'inserimento di ogni tipo di moneta
-    cout << "n. 2 Euro: "; cin >> coins.two;
-    cout << "n. 1 Euro: "; cin >> coins.one;
-    cout << "n. 50 Cent: "; cin >> coins.fifty_c;
-    cout << "n. 20 Cent: "; cin >> coins.twenty_c;
-    cout << "n. 10 Cent: "; cin >> coins.ten_c;
-    cout << "n. 5 Cent: "; cin >> coins.five_c;
-    cout << "n. 2 Cent: "; cin >> coins.two_c;
-    cout << "n. 1 Cent: "; cin >> coins.one_c;
+    cout << "\nCOINS:" << endl; 
+    // The user records the entry for each type of coin
+    cout << "No. of 2 Euro: "; cin >> coins.two;
+    cout << "No. of 1 Euro: "; cin >> coins.one;
+    cout << "No. of 50 Cent: "; cin >> coins.fifty_c;
+    cout << "No. of 20 Cent: "; cin >> coins.twenty_c;
+    cout << "No. of 10 Cent: "; cin >> coins.ten_c;
+    cout << "No. of 5 Cent: "; cin >> coins.five_c;
+    cout << "No. of 2 Cent: "; cin >> coins.two_c;
+    cout << "No. of 1 Cent: "; cin >> coins.one_c;
 
-    // Gestione di un input sbagliato (es: inserisce un valore diverso da int come definito nelle strutture)
+    // Handle incorrect input (e.g., entering a non-int value as defined in the structures)
     if(cin.fail()) { 
-        cin.clear(); // Resetta lo stato di errore del flusso di input
-        cin.ignore(10000, '\n'); // Scarta l'input non valido
-        cout << "Errore nell'inserimento. Riprova.\n"; 
-        inserimento(paper, coins); // Richiama la funzione per permettere all'utente di reinserire i dati
+        cin.clear(); // Reset the error state of the input stream
+        cin.ignore(10000, '\n'); // Discard invalid input
+        cout << "Error in input. Please try again.\n"; 
+        input(paper, coins); // Recall the function to allow the user to re-enter data
     }
 }
 
-// Funzione per calcolare il saldo totale del portafoglio
-double calcolo(const euro_paper &paper, const euro_coins &coins)
+// Function to calculate the total balance of the wallet
+double calculate(const euro_paper &paper, const euro_coins &coins)
 {
-    // Array contenenti i valori nominali di banconote e monete
-    const int valori_banconote[] = {500, 200, 100, 50, 20, 10, 5};
-    const int banconote[] = {paper.fivehundred, paper.twohundred, paper.onehundred, paper.fifty, paper.twenty, paper.ten, paper.five};
+    // Arrays containing the nominal values of banknotes and coins
+    const int note_values[] = {500, 200, 100, 50, 20, 10, 5};
+    const int banknotes[] = {paper.fivehundred, paper.twohundred, paper.onehundred, paper.fifty, paper.twenty, paper.ten, paper.five};
 
-    const double valori_monete[] = {2.0, 1.0, 0.50, 0.20, 0.10, 0.05, 0.02, 0.01};
-    const int monete[] = {coins.two, coins.one, coins.fifty_c, coins.twenty_c, coins.ten_c, coins.five_c, coins.two_c, coins.one_c};
+    const double coin_values[] = {2.0, 1.0, 0.50, 0.20, 0.10, 0.05, 0.02, 0.01};
+    const int coins_array[] = {coins.two, coins.one, coins.fifty_c, coins.twenty_c, coins.ten_c, coins.five_c, coins.two_c, coins.one_c};
 
-    // Totale di banconote e monete. Inizializzate a 0
-    int banconote_tot = 0;
-    double monete_tot = 0;
+    // Total banknotes and coins. Initialized to 0
+    int total_banknotes = 0;
+    double total_coins = 0;
 
-    // Tot. banconote
+    // Total banknotes
     for(int i = 0; i < 7; i++) {
-        banconote_tot += banconote[i] * valori_banconote[i];
+        total_banknotes += banknotes[i] * note_values[i];
     }
 
-    // Tot. monete
+    // Total coins
     for(int i = 0; i < 8; i++) {
-        monete_tot += monete[i] * valori_monete[i];
+        total_coins += coins_array[i] * coin_values[i];
     }
 
-    return banconote_tot + monete_tot; // TOTALE Finale 
+    return total_banknotes + total_coins; // Final TOTAL 
 }
 
-// Funzione per salvare il saldo totale su un file
-void salva_saldo(double saldo_tot)
+// Function to save the total balance to a file
+void save_balance(double total_balance)
 {
-    time_t t = time(0); // Ottiene il tempo attuale
-    tm* now = localtime(&t); // Converte il tempo in formato locale
-    char data[11]; 
-    strftime(data, sizeof(data), "%d/%m/%Y", now); // Format della data come giorno/mese/anno
+    time_t t = time(0); // Get the current time
+    tm* now = localtime(&t); // Convert the time to local format
+    char date[11]; 
+    strftime(date, sizeof(date), "%d/%m/%Y", now); // Format the date as day/month/year
 
-    ofstream file("Portafoglio.txt", ios::app); // Apre il file in modalità append(app) per aggiungere dati senza sovrascrivere valori salvati giorni prima
+    ofstream file("Wallet.txt", ios::app); // Open the file in append mode (app) to add data without overwriting previously saved values
 
-    if (file.is_open()) { // Controlla se il file è stato aperto correttamente
-        file << data << "\t" << saldo_tot << " euro." << endl; // Scrive la data e il saldo nel file
-        file.close(); // Chiude il file
-        cout << "\nIl saldo totale è stato salvato nel file 'portafoglio.txt'." << endl;
+    if (file.is_open()) { // Check if the file was opened correctly
+        file << date << "\t" << total_balance << " euros." << endl; // Write the date and balance to the file
+        file.close(); // Close the file
+        cout << "\nThe total balance has been saved to the 'wallet.txt' file." << endl;
     } else {
-        cout << "Impossibile aprire il file!" << endl; // Segnala errore se il file non si apre
+        cout << "Unable to open the file!" << endl; // Report an error if the file does not open
     }
 }
