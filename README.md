@@ -13,3 +13,5 @@ The final total is saved in the **wallet.txt** file for easy reference.
 ## Euro Only
 
 My program currently operates exclusively with Euro banknotes and coins. In the future, I plan to introduce support for other major currencies.
+
+- Euro €
