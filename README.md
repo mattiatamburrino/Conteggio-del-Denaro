@@ -9,3 +9,7 @@ This is an intermediate-level C++ program designed to help you accurately calcul
 3. 💰 **Get the Total**: The program calculates and provides the total cash amount.
 
 The final total is saved in the **wallet.txt** file for easy reference.
+
+## Euro Only
+
+My program currently operates exclusively with Euro banknotes and coins. In the future, I plan to introduce support for other major currencies.
