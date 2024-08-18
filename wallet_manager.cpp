@@ -128,7 +128,7 @@ void save_balance(double total_balance)
     char date[11]; 
     strftime(date, sizeof(date), "%d/%m/%Y", now); // Format the date as day/month/year
 
-    ofstream file("Wallet.txt", ios::app); // Open the file in append mode (app) to add data without overwriting previously saved values
+    ofstream file("wallet.txt", ios::app); // Open the file in append mode (app) to add data without overwriting previously saved values
 
     if (file.is_open()) { // Check if the file was opened correctly
         file << date << "\t" << total_balance << " euros." << endl; // Write the date and balance to the file
