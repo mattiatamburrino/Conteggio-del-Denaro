@@ -7,7 +7,7 @@ using namespace std;
 struct euro_paper
 {
     int fivehundred = 0; // Number of 500 euro banknotes
-    int twohundred = 0;  // Number of ...
+    int twohundred = 0;  // Number of ...   
     int onehundred = 0;
     int fifty = 0;
     int twenty = 0;
